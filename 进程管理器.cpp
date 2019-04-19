@@ -6,18 +6,18 @@
 #include "LinkListSimple.hpp"
 
 //Done
-//ĞŞ¸Ä²åÈëµ½Î²½Úµã ¡Á
-//°´Ãû×ÖÖÕÖ¹¡Ì
+//ä¿®æ”¹æ’å…¥åˆ°å°¾èŠ‚ç‚¹ Ã—
+//æŒ‰åå­—ç»ˆæ­¢âˆš
 
 // TO DO
 //string
-//Æô¶¯½ø³Ì
-//Òì³£´¦Àí
-//pharse½âÎöÃüÁî  argument²»´ø-,option´ø-
-//¿ìÕÕÊ±¼äctime
-//ÓÃmap°Ñoption ºÍ¼ò³ÆºÍ°ïÖú×Ö·û´®Ó³ÉäÆğÀ´.
-//wchar¼æÈİ
-//ÓÃ±íÇéµ±ÌáÊ¾·û
+//å¯åŠ¨è¿›ç¨‹
+//å¼‚å¸¸å¤„ç†
+//pharseè§£æå‘½ä»¤  argumentä¸å¸¦-,optionå¸¦-
+//å¿«ç…§æ—¶é—´ctime
+//ç”¨mapæŠŠoption å’Œç®€ç§°å’Œå¸®åŠ©å­—ç¬¦ä¸²æ˜ å°„èµ·æ¥.
+//wcharå…¼å®¹
+//ç”¨è¡¨æƒ…å½“æç¤ºç¬¦
 
 typedef struct Processstru
 {
@@ -50,7 +50,7 @@ DWORD queryPid(LinkList<Proc>& LL)
 {
 	char buf[50];
 	scanf("%s", buf);
-	//printf("#½øÈëquery#");
+	//printf("#è¿›å…¥query#");
 
 	if (!strcmp(buf, "pid"))
 	{
@@ -65,10 +65,10 @@ DWORD queryPid(LinkList<Proc>& LL)
 		scanf("%d", &ind);
 		if ((ind > LL.size()) || (ind < 0))
 		{
-			printf("ÖÕÖ¹½ø³ÌĞòºÅ´íÎó\n");
-			throw "ÖÕÖ¹½ø³ÌĞòºÅ´íÎó";
+			printf("ç»ˆæ­¢è¿›ç¨‹åºå·é”™è¯¯\n");
+			throw "ç»ˆæ­¢è¿›ç¨‹åºå·é”™è¯¯";
 		}
-		//printf("#·µ»Øquery,%d:%lu#", ind, LL[LL.size() - ind - 1].th32ProcessID);
+		//printf("#è¿”å›query,%d:%lu#", ind, LL[LL.size() - ind - 1].th32ProcessID);
 		return LL[LL.size() - ind - 1].th32ProcessID;
 	}
 	else if (!strcmp(buf, "name"))
@@ -85,8 +85,8 @@ DWORD queryPid(LinkList<Proc>& LL)
 			}
 			a = a->succ;
 		}
-		printf("Ãû×ÖÆ¥ÅäÊ§°Ü\n");
-		throw "Ãû×ÖÆ¥ÅäÊ§°Ü";
+		printf("åå­—åŒ¹é…å¤±è´¥\n");
+		throw "åå­—åŒ¹é…å¤±è´¥";
 	}
 	else if (!strcmp(buf, "this"))
 	{
@@ -94,8 +94,8 @@ DWORD queryPid(LinkList<Proc>& LL)
 	}
 	else
 	{
-		puts("ÃüÁî´íÎó,Ó¦¸ÃÊÇpid/number/num");
-		throw "½ø³ÌĞòºÅÃüÁî´íÎó";
+		puts("å‘½ä»¤é”™è¯¯,åº”è¯¥æ˜¯pid/number/num");
+		throw "è¿›ç¨‹åºå·å‘½ä»¤é”™è¯¯";
 	}
 }
 
@@ -190,22 +190,22 @@ BOOL SetPrivilege(
 //    }
 //}
 
-//ÕÒµ½½ø³ÌËùÔÚµÄ³ÌĞòµÄÄ¿Â¼
+//æ‰¾åˆ°è¿›ç¨‹æ‰€åœ¨çš„ç¨‹åºçš„ç›®å½•
 //	char path[MAX_PATH+1];
 bool find(DWORD ProcessId, LPSTR path, DWORD* size)
 {
 	HANDLE h_Process = OpenProcess(PROCESS_QUERY_INFORMATION , FALSE, ProcessId);//PROCESS_QUERY_INFORMATION | PROCESS_VM_READ
 	if (h_Process == INVALID_HANDLE_VALUE)
 	{
-		printf("²éÕÒÂ·¾¶:»ñÈ¡HANDLEÊ§°Ü£¡\n");
+		printf("æŸ¥æ‰¾è·¯å¾„:è·å–HANDLEå¤±è´¥ï¼\n");
 		::CloseHandle(h_Process);
 		throw "Handle";
 		return false;
 	}
-	//printf("²éÕÒÂ·¾¶:»ñÈ¡HANDLE³É¹¦£¡\n");
+	//printf("æŸ¥æ‰¾è·¯å¾„:è·å–HANDLEæˆåŠŸï¼\n");
 	if (!QueryFullProcessImageNameA(h_Process, 0, path, size))
 	{
-		printf("²éÕÒÂ·¾¶:»ñÈ¡Â·¾¶Ê§°Ü£¡\n");
+		printf("æŸ¥æ‰¾è·¯å¾„:è·å–è·¯å¾„å¤±è´¥ï¼\n");
 		::CloseHandle(h_Process);
 		throw "Handle";
 		return false;
@@ -221,76 +221,76 @@ int refresh (LinkList<Proc>& LL)
 	HANDLE hProcessSnap = NULL;
 	PROCESSENTRY32 pe32 = {0};
  
-	//ÔÚÊ¹ÓÃÕâ¸ö½á¹¹Ç°£¬ÏÈÉèÖÃËüµÄ´óĞ¡
+	//åœ¨ä½¿ç”¨è¿™ä¸ªç»“æ„å‰ï¼Œå…ˆè®¾ç½®å®ƒçš„å¤§å°
 	pe32.dwSize = sizeof(PROCESSENTRY32);
  
-	//¸øÏµÍ³ÄÚËùÓĞµÄ½ø³ÌÅÄ¸ö¿ìÕÕ
+	//ç»™ç³»ç»Ÿå†…æ‰€æœ‰çš„è¿›ç¨‹æ‹ä¸ªå¿«ç…§
 	hProcessSnap = ::CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS,0);
 	if (hProcessSnap == INVALID_HANDLE_VALUE)
 	{
-		printf("´´½¨½ø³Ì¿ìÕÕ:»ñÈ¡½ø³Ì¿ìÕÕ¾ä±úÊ§°Ü!\n");
+		printf("åˆ›å»ºè¿›ç¨‹å¿«ç…§:è·å–è¿›ç¨‹å¿«ç…§å¥æŸ„å¤±è´¥!\n");
 		throw "PHandle";
 		return -1;
 	}
  
-	//±éÀú½ø³Ì¿ìÕÕ£¬ÂÖÁ÷ÏÔÊ¾Ã¿¸ö½ø³ÌµÄĞÅÏ¢
+	//éå†è¿›ç¨‹å¿«ç…§ï¼Œè½®æµæ˜¾ç¤ºæ¯ä¸ªè¿›ç¨‹çš„ä¿¡æ¯
 	BOOL bRet = ::Process32First(hProcessSnap,&pe32);
 	int ind = 0;
 	while (bRet)
 	{
-		//²åÈëµ½Á´±í 
+		//æ’å…¥åˆ°é“¾è¡¨ 
 		Proc pr = Proc(pe32.th32ProcessID, pe32.cntThreads, pe32.th32ParentProcessID, pe32.pcPriClassBase, pe32.szExeFile);
-		LL.insertAsFirst(pr);//Á´±íµ±Õ»ÓÃ,´æÖüµÄË³ĞòºÍÏÔÊ¾µÄÊÇ·´µÄ
+		LL.insertAsFirst(pr);//é“¾è¡¨å½“æ ˆç”¨,å­˜è´®çš„é¡ºåºå’Œæ˜¾ç¤ºçš„æ˜¯åçš„
 
-		//std::cout << "½ø³ÌÃû³Æ£º"<<pe32.szExeFile<<std::endl;   //ÕâÀïµÃµ½µÄÓ¦¸ÃÊÇ¿í×Ö·û£¬ÓÃ%ls»òÕß%S,²»È»ÎŞ·¨Õı³£´òÓ¡...ÊÇ²»ÊÇĞ´´íÁË,Ã÷Ã÷ÓÃ%s²ÅÄÜ´òÓ¡ 
+		//std::cout << "è¿›ç¨‹åç§°ï¼š"<<pe32.szExeFile<<std::endl;   //è¿™é‡Œå¾—åˆ°çš„åº”è¯¥æ˜¯å®½å­—ç¬¦ï¼Œç”¨%lsæˆ–è€…%S,ä¸ç„¶æ— æ³•æ­£å¸¸æ‰“å°...æ˜¯ä¸æ˜¯å†™é”™äº†,æ˜æ˜ç”¨%sæ‰èƒ½æ‰“å° 
 		char buf[25];
-		sprintf(buf, "ĞòºÅ:%d", ind++); printf("%-16s", buf);
+		sprintf(buf, "åºå·:%d", ind++); printf("%-16s", buf);
 		sprintf(buf, "ID: %lu", pe32.th32ProcessID); printf("%-16s", buf);
-		printf("Ãû³Æ£º%s\n",pe32.szExeFile);
+		printf("åç§°ï¼š%s\n",pe32.szExeFile);
 		bRet = ::Process32Next(hProcessSnap,&pe32);
 	}
-	//²»ÒªÍü¼ÇÇå³ıµôsnapshot¶ÔÏó
+	//ä¸è¦å¿˜è®°æ¸…é™¤æ‰snapshotå¯¹è±¡
 	::CloseHandle(hProcessSnap);
 	return 0;
 }
 
-//ÖÕÖ¹½ø³Ì 
+//ç»ˆæ­¢è¿›ç¨‹ 
 //https://www.write-bug.com/article/1868.html 
 BOOL TerminateProcess(DWORD dwProcessId)
 {
-    // ´ò¿ª½ø³Ì, »ñÈ¡½ø³Ì¾ä±ú
+    // æ‰“å¼€è¿›ç¨‹, è·å–è¿›ç¨‹å¥æŸ„
     HANDLE hProcess = ::OpenProcess(PROCESS_TERMINATE,FALSE, dwProcessId);
     if (NULL == hProcess)
     {
-        printf("ÖÕÖ¹½ø³ÌÖĞ:»ñÈ¡½ø³Ì¾ä±úÊ§°Ü!\n");
+        printf("ç»ˆæ­¢è¿›ç¨‹ä¸­:è·å–è¿›ç¨‹å¥æŸ„å¤±è´¥!\n");
 		throw "Handle";
         return FALSE;
     }
-    // ½áÊø½ø³Ì
+    // ç»“æŸè¿›ç¨‹
     BOOL bRet = ::TerminateProcess(hProcess, 0);
     if (FALSE == bRet)
     {
         ::CloseHandle(hProcess);
-        printf("ÖÕÖ¹½ø³ÌÊ§°Ü!\n");
+        printf("ç»ˆæ­¢è¿›ç¨‹å¤±è´¥!\n");
 
         return FALSE;
     }
-    // ¹Ø±Õ½ø³Ì¾ä±ú
+    // å…³é—­è¿›ç¨‹å¥æŸ„
     ::CloseHandle(hProcess);
     return TRUE;
 }
 
 
 
-//ÔİÍ£½ø³Ì
+//æš‚åœè¿›ç¨‹
 //http://www.cnblogs.com/gccbuaa/p/7222131.html
 void StopProcess(DWORD dwProcessId) 
 {
-        //´´½¨Ïß³Ì¿ìÕÕ
+        //åˆ›å»ºçº¿ç¨‹å¿«ç…§
         HANDLE hSnap = CreateToolhelp32Snapshot(TH32CS_SNAPTHREAD, dwProcessId);
         if ( hSnap == INVALID_HANDLE_VALUE )
         {
-                printf("ÔİÍ£½ø³ÌÖĞ:»ñÈ¡½ø³Ì¾ä±úÊ§°Ü£¡\n");
+                printf("æš‚åœè¿›ç¨‹ä¸­:è·å–è¿›ç¨‹å¥æŸ„å¤±è´¥ï¼\n");
 				throw "Handle";
                 return ;
         }
@@ -301,11 +301,11 @@ void StopProcess(DWORD dwProcessId)
     
         while ( bRet )
         {
-                //ÍÆ¶ÏÏß³ÌËùÊô
+                //æ¨æ–­çº¿ç¨‹æ‰€å±
                  
                 if ( Te32.th32OwnerProcessID == dwProcessId )
                 {
-                	//ÔİÍ£Ïß³Ì 
+                	//æš‚åœçº¿ç¨‹ 
                 	 
                         HANDLE hThread = OpenThread(THREAD_ALL_ACCESS, FALSE, Te32.th32ThreadID);
             
@@ -320,7 +320,7 @@ void StopProcess(DWORD dwProcessId)
 }
 
 
-//»Ö¸´½ø³Ì
+//æ¢å¤è¿›ç¨‹
 //http://www.cnblogs.com/gccbuaa/p/7222131.html
 void ResumeProcess(DWORD dwProcessId)
 {
@@ -328,7 +328,7 @@ void ResumeProcess(DWORD dwProcessId)
         HANDLE hSnap = CreateToolhelp32Snapshot(TH32CS_SNAPTHREAD, dwProcessId);
         if ( hSnap == INVALID_HANDLE_VALUE )
         {
-                printf("½ø³Ì»Ö¸´:»ñÈ¡½ø³Ì¾ä±úÊ§°Ü£¡\n");
+                printf("è¿›ç¨‹æ¢å¤:è·å–è¿›ç¨‹å¥æŸ„å¤±è´¥ï¼\n");
 				throw "Handle";
                 return ;
         }
@@ -361,9 +361,9 @@ int main(int argc, char* argv[])
 	char* a = NULL;
 	char buf[256] = { 0 };
 	refresh(ll);
-	puts("½ø³Ì¹ÜÀíÆ÷ 2019-4-17");
-	puts("ÊäÈëhelp²é¿´Ê¹ÓÃ·½·¨");
-	puts("ÊäÈëver»òversion²é¿´ÀúÊ·¹¦ÄÜÑİ±ä");
+	puts("è¿›ç¨‹ç®¡ç†å™¨ 2019-4-17");
+	puts("è¾“å…¥helpæŸ¥çœ‹ä½¿ç”¨æ–¹æ³•");
+	puts("è¾“å…¥veræˆ–versionæŸ¥çœ‹å†å²åŠŸèƒ½æ¼”å˜");
 	while (printf("-)"),scanf("%s", buf))
 	{
 		
@@ -384,15 +384,15 @@ int main(int argc, char* argv[])
 		}
 		else if (!strcmp(buf, "help"))
 		{
-			puts("½ø³Ì¹ÜÀíÆ÷ 2019-04-17");
-			puts("¿ÉÓÃÃüÁî:");
-			puts("help\tÏÔÊ¾°ïÖú");
-			puts("quit/exit\tÍË³ö³ÌĞò");
-			puts("list/refresh\tË¢ĞÂÏÔÊ¾½ø³Ì");
-			puts("terminate/kill  pid/num/number [pidÖµ»òÕßĞòºÅ]\tÖÕÖ¹½ø³Ì");
-			puts("freeze/stop/resume  pid/num/number [pidÖµ»òÕßĞòºÅ]\tÔİÍ£/»Ö¸´½ø³ÌµÄËùÓĞÏß³Ì");
-			puts("find  pid/num/number [pidÖµ»òÕßĞòºÅ]\t²éÕÒ½ø³ÌËùÔÚÂ·¾¶");
-			puts("pid/num/number [pidÖµ»òÕßĞòºÅ]¿ÉÒÔÌæ»»Îªthis±íÊ¾½ø³Ì¹ÜÀíÆ÷×Ô¼ºµÄ½ø³Ì");
+			puts("è¿›ç¨‹ç®¡ç†å™¨ 2019-04-17");
+			puts("å¯ç”¨å‘½ä»¤:");
+			puts("help\tæ˜¾ç¤ºå¸®åŠ©");
+			puts("quit/exit\té€€å‡ºç¨‹åº");
+			puts("list/refresh\tåˆ·æ–°æ˜¾ç¤ºè¿›ç¨‹");
+			puts("terminate/kill  pid/num/number [pidå€¼æˆ–è€…åºå·]\tç»ˆæ­¢è¿›ç¨‹");
+			puts("freeze/stop/resume  pid/num/number [pidå€¼æˆ–è€…åºå·]\tæš‚åœ/æ¢å¤è¿›ç¨‹çš„æ‰€æœ‰çº¿ç¨‹");
+			puts("find  pid/num/number [pidå€¼æˆ–è€…åºå·]\tæŸ¥æ‰¾è¿›ç¨‹æ‰€åœ¨è·¯å¾„");
+			puts("pid/num/number [pidå€¼æˆ–è€…åºå·]å¯ä»¥æ›¿æ¢ä¸ºthisè¡¨ç¤ºè¿›ç¨‹ç®¡ç†å™¨è‡ªå·±çš„è¿›ç¨‹");
 		}
 		else if ((!strcmp(buf, "terminate")) || (!strcmp(buf, "kill")))
 		{
@@ -444,11 +444,11 @@ int main(int argc, char* argv[])
 		}
 		else if ((!strcmp(buf, "version")) || (!strcmp(buf, "ver")) )
 		{
-			puts("2019-04-17 ½ø³Ì¹ÜÀíÆ÷µÚÒ»´ÎĞ´³É ");
-			puts("ÊµÏÖÁËrefresh,find,resume,stop,±£ÁôÁËSetPrivilegeº¯Êı");
-			puts("ºÍÄÂ¿Â™L½»Á÷,Ôö¼ÓÁËÃüÁîÌáÊ¾·û,refreshÔö¼Ó±ğÃûlist,¿¼ÂÇÔö¼ÓÔËĞĞĞÂ½ø³ÌµÄ¹¦ÄÜ");
-			puts("ÃüÁîÌáÊ¾·ûÓÉ>¸ÄÎª-)");
-			puts("¼ÓÈëÁËsmile,suisideÃüÁî");
+			puts("2019-04-17 è¿›ç¨‹ç®¡ç†å™¨ç¬¬ä¸€æ¬¡å†™æˆ ");
+			puts("å®ç°äº†refresh,find,resume,stop,ä¿ç•™äº†SetPrivilegeå‡½æ•°");
+			puts("å’Œç©†æŸ¯æ©ªäº¤æµ,å¢åŠ äº†å‘½ä»¤æç¤ºç¬¦,refreshå¢åŠ åˆ«ålist,è€ƒè™‘å¢åŠ è¿è¡Œæ–°è¿›ç¨‹çš„åŠŸèƒ½");
+			puts("å‘½ä»¤æç¤ºç¬¦ç”±>æ”¹ä¸º-)");
+			puts("åŠ å…¥äº†smile,suisideå‘½ä»¤");
 			//puts("");
 		}
 		else if (!strcmp(buf, "smile"))
@@ -456,14 +456,14 @@ int main(int argc, char* argv[])
 			puts("(*^_^*)");
 			//puts("");
 		}
-		else if (!strcmp(buf, "suiside"))
+		else if (!strcmp(buf, "suicide"))
 		{
 			TerminateProcess(GetCurrentProcessId());
 			//puts("");
 		}
 		else
 		{
-			puts("Î´ÖªÃüÁî,ÇëÖØĞÂÊäÈë,»òÊäÈëhelp.");
+			puts("æœªçŸ¥å‘½ä»¤,è¯·é‡æ–°è¾“å…¥,æˆ–è¾“å…¥help.");
 			continue;
 		}
 	}
@@ -475,15 +475,15 @@ int main(int argc, char* argv[])
 /*
 typedef struct tagPROCESSENTRY32
 {
-    DWORD dwSize; // Õâ¸ö½á¹¹µÄ³¤¶È If you do not initialize dwSize, Process32First fails.
-    DWORD cntUsage; //´Ë½ø³ÌµÄÒıÓÃ¼ÆÊı Õâ¸ö³ÉÔ±ÒÑ¾­²»ÔÙ±»Ê¹ÓÃ£¬×ÜÊÇÉèÖÃÎªÁã¡£
-    DWORD th32ProcessID;//½ø³ÌID=process identifier=PIDThe process identifier.
-    ULONG_PTR th32DefaultHeapID;//½ø³ÌÄ¬ÈÏ¶Ñ Õâ¸ö³ÉÔ±ÒÑ¾­²»ÔÙ±»Ê¹ÓÃ£¬×ÜÊÇÉèÖÃÎªÁã¡£
-    DWORD th32ModuleID;//½ø³ÌÄ£¿éID Õâ¸ö³ÉÔ±ÒÑ¾­²»ÔÙ±»Ê¹ÓÃ£¬×ÜÊÇÉèÖÃÎªÁã¡£
-    DWORD cntThreads;//Õâ¸ö³ÉÔ±Ö´ĞĞÏß³Ì¿ªÊ¼µÄ½ø³Ì¡£
-    DWORD th32ParentProcessID;//¸¸½ø³ÌµÄID£©The identifier of the process that created this process
-    LONG pcPriClassBase;//Ïß³ÌÓÅÏÈÈ¨
-    DWORD dwFlags;//Õâ¸ö³ÉÔ±ÒÑ¾­²»ÔÙ±»Ê¹ÓÃ£¬×ÜÊÇÉèÖÃÎªÁã¡£
-    TCHAR szExeFile[MAX_PATH];//½ø³ÌµÄ¿ÉÖ´ĞĞÎÄ¼şÃû³Æ¡£Òª»ñµÃ¿ÉÖ´ĞĞÎÄ¼şµÄÍêÕûÂ·¾¶£¬Ó¦µ÷ÓÃModule32Firstº¯Êı£¬ÔÙ¼ì²éÆä·µ»ØµÄMODULEENTRY32½á¹¹µÄszExePath³ÉÔ±¡£µ«ÊÇ£¬Èç¹û±»µ÷ÓÃ½ø³ÌÊÇÒ»¸ö64Î»³ÌĞò£¬Äú±ØĞëµ÷ÓÃQueryFullProcessImageNameº¯ÊıÈ¥»ñÈ¡64Î»½ø³ÌµÄ¿ÉÖ´ĞĞÎÄ¼şÍêÕûÂ·¾¶Ãû¡£
+    DWORD dwSize; // è¿™ä¸ªç»“æ„çš„é•¿åº¦ If you do not initialize dwSize, Process32First fails.
+    DWORD cntUsage; //æ­¤è¿›ç¨‹çš„å¼•ç”¨è®¡æ•° è¿™ä¸ªæˆå‘˜å·²ç»ä¸å†è¢«ä½¿ç”¨ï¼Œæ€»æ˜¯è®¾ç½®ä¸ºé›¶ã€‚
+    DWORD th32ProcessID;//è¿›ç¨‹ID=process identifier=PIDThe process identifier.
+    ULONG_PTR th32DefaultHeapID;//è¿›ç¨‹é»˜è®¤å † è¿™ä¸ªæˆå‘˜å·²ç»ä¸å†è¢«ä½¿ç”¨ï¼Œæ€»æ˜¯è®¾ç½®ä¸ºé›¶ã€‚
+    DWORD th32ModuleID;//è¿›ç¨‹æ¨¡å—ID è¿™ä¸ªæˆå‘˜å·²ç»ä¸å†è¢«ä½¿ç”¨ï¼Œæ€»æ˜¯è®¾ç½®ä¸ºé›¶ã€‚
+    DWORD cntThreads;//è¿™ä¸ªæˆå‘˜æ‰§è¡Œçº¿ç¨‹å¼€å§‹çš„è¿›ç¨‹ã€‚
+    DWORD th32ParentProcessID;//çˆ¶è¿›ç¨‹çš„IDï¼‰The identifier of the process that created this process
+    LONG pcPriClassBase;//çº¿ç¨‹ä¼˜å…ˆæƒ
+    DWORD dwFlags;//è¿™ä¸ªæˆå‘˜å·²ç»ä¸å†è¢«ä½¿ç”¨ï¼Œæ€»æ˜¯è®¾ç½®ä¸ºé›¶ã€‚
+    TCHAR szExeFile[MAX_PATH];//è¿›ç¨‹çš„å¯æ‰§è¡Œæ–‡ä»¶åç§°ã€‚è¦è·å¾—å¯æ‰§è¡Œæ–‡ä»¶çš„å®Œæ•´è·¯å¾„ï¼Œåº”è°ƒç”¨Module32Firstå‡½æ•°ï¼Œå†æ£€æŸ¥å…¶è¿”å›çš„MODULEENTRY32ç»“æ„çš„szExePathæˆå‘˜ã€‚ä½†æ˜¯ï¼Œå¦‚æœè¢«è°ƒç”¨è¿›ç¨‹æ˜¯ä¸€ä¸ª64ä½ç¨‹åºï¼Œæ‚¨å¿…é¡»è°ƒç”¨QueryFullProcessImageNameå‡½æ•°å»è·å–64ä½è¿›ç¨‹çš„å¯æ‰§è¡Œæ–‡ä»¶å®Œæ•´è·¯å¾„åã€‚
 } PROCESSENTRY32, *PPROCESSENTRY32;
 */
