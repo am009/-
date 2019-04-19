@@ -28,3 +28,5 @@ freeze/stop/resume  pid/num/number [pid值或者序号]      暂停/恢复进程
 find  pid/num/number [pid值或者序号]    查找进程所在路径
 
 pid/num/number [pid值或者序号]可以替换为this表示进程管理器自己的进程
+
+注:debug目录下是旧版的可执行文件,release下的才是新的.
