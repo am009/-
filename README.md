@@ -30,3 +30,8 @@ find  pid/num/number [pid值或者序号]    查找进程所在路径
 pid/num/number [pid值或者序号]可以替换为this表示进程管理器自己的进程
 
 注:debug目录下是旧版的可执行文件,release下的才是新的.
+
+其中consoleMenu 来自https://github.com/bitDaft/win-console-menu-gui-library
+想用但是还没用
+
+还有helloworld.cpp,temp.cpp和项目无关,忘了删
