@@ -1,6 +1,18 @@
 # 进程管理器
 Homework for datastructure class
 
+相关参考网址:
+
+http://www.cnblogs.com/gccbuaa/p/7222131.html
+
+https://blog.csdn.net/yuyan987/article/details/78654213
+
+https://www.write-bug.com/article/1868.html
+
+https://www.cnblogs.com/ini_always/archive/2011/06/05/2073173.html
+
+https://www.cnblogs.com/autumoonchina/p/8315419.html
+
 进程管理器 2019-04-17
 可用命令:
 help    显示帮助
